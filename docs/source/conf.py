@@ -21,6 +21,13 @@ extensions = [
     'sphinx.ext.napoleon'
 ]
 
+autodoc_default_options = {
+    "members": True,
+    "undoc-members": True,
+    "show-inheritance": True,
+    "imported-members": False
+}
+
 templates_path = ['_templates']
 exclude_patterns = []
 
