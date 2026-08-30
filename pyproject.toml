@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "test-game"
+version = "0.1.0"
+description = "A test game written in Python"
+requires-python = ">=3.10"
+dependencies = [
+    "furo",
+    "pytest",
+    "sphinx"
+]
+
+[tool.setuptools]
+packages = ["game"]
+
+[tool.pytest.ini_options]
+testpaths = ["game/tests"]
