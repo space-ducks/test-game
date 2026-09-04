@@ -1,5 +1,3 @@
 # API Reference
 
-::: test_game
-    options:
-      show_submodules: true
+::: test_game.load_asset
