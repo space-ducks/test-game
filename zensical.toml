@@ -1,0 +1,39 @@
+[project]
+site_name = "Test Game"
+site_url = "https://space-ducks.github.io/test-game/"
+repo_url = "https://github.com/space-ducks/test-game"
+repo_name = "space-ducks/test-game"
+
+nav = [
+  { "Home" = "index.md" },
+  { "Installation" = "installation.md" },
+  { "Usage" = "usage.md" },
+  { "API Reference" = "api.md" },
+  { "Project Scope" = "scope.md"}
+]
+
+[project.theme]
+font.text = "Fira Sans"
+font.code = "Cascadia Code"
+
+[project.theme.icon]
+logo = "lucide/gamepad-2"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "light green"
+accent = "lime"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "light green"
+accent = "lime"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to light mode"
+
+[project.plugins.mkdocstrings.handlers.python]
+paths = ["src"]
