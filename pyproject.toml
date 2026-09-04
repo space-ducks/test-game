@@ -21,8 +21,8 @@ classifiers = [
 ]
 license = {text = "MIT"}
 dependencies = [
-    "arcade>=2.4.3",
-    "pymunk>=7.3.0",
+    "arcade>=3.3.3",
+    "pymunk==6.9.0",
 ]
 requires-python = ">= 3.12"
 
