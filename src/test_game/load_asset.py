@@ -28,8 +28,14 @@ spritesheet_list: dict[str, list[Path]] = {
 }
 
 def conv_int(val, val_type:Type=str) -> int:
-    """
-    Converts
+    r"""
+    Converts an arbitrary value to type: int
+    if it can be converted to one.
+
+    $$a+b=c$$
+
+    !!! warning
+        uh oh
 
     Parameters
     ----------
