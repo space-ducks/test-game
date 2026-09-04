@@ -47,6 +47,3 @@ docstring_style = "numpy"
 docstring_section_style = "list"
 members_order = "source"
 show_root_heading = true
-
-# [project.markdown_extensions.pymdownx.arithmatex]
-# generic = true
