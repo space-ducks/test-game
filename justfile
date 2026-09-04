@@ -1,4 +1,5 @@
 # Justfile for test-game
+set windows-shell := ["C:/Program Files/Git/bin/sh.exe", "-c"]
 
 # Show available commands
 list:
