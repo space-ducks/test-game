@@ -7,4 +7,5 @@ Test game written in Python.
 - [Installation](installation.md) - how to install Test Game
 - [Usage](usage.md) - how to use Test Game
 - [API Reference](api.md) - auto-generated API documentation
+- [For Developers](for-devs.md) - instructions and notes for developers
 - [Project Scope](scope.md) - scope of project development
