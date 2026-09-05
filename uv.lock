@@ -561,11 +561,11 @@ wheels = [
 
 [[package]]
 name = "pyglet"
-version = "2.1.16"
+version = "2.1.5"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/8d/af/72a0c4fc95339ec590f441a591143e04acb27b2c94845735809c1630ade6/pyglet-2.1.16.tar.gz", hash = "sha256:ca90ee05532ced8330b8a8087ac2a7b69589b7fa7fb67f85aabe24aaf4ae42c0", size = 6598246, upload-time = "2026-08-01T01:32:35.895Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/e9/b1/d8b9971c508891cff37178836f00d009d5819a6d7989a9361c1249e4a44d/pyglet-2.1.5.tar.gz", hash = "sha256:98a04dd79a1c72825a2c067bdfcba478a6d70e2892d06ee95a63ad82efd9f103", size = 6546485, upload-time = "2025-04-22T08:02:04.719Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/23/93/b81e304f8954876fed84c5afffe83d2c1c0ceed064d5003b87fbfe9f9076/pyglet-2.1.16-py3-none-any.whl", hash = "sha256:27f9cabf97a64b15d335cf70d9e8979bbab5f84a9900a058206bcd3a2de341ae", size = 1037857, upload-time = "2026-08-01T01:32:30.566Z" },
+    { url = "https://files.pythonhosted.org/packages/ef/e0/41a4dc6b1ed0fc129b04c4506989a9f61badd3a07cc8ae24fdbe020cd2c7/pyglet-2.1.5-py3-none-any.whl", hash = "sha256:93eb1de430ea99acaea4aa1969f9a3d0e0842efa2b050fee3e621cfd9c872b99", size = 983966, upload-time = "2025-04-22T08:01:24.216Z" },
 ]
 
 [[package]]
@@ -756,7 +756,10 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "arcade" },
+    { name = "pillow" },
+    { name = "pyglet" },
     { name = "pymunk" },
+    { name = "pytiled-parser" },
 ]
 
 [package.dev-dependencies]
@@ -784,7 +787,10 @@ typecheck = [
 [package.metadata]
 requires-dist = [
     { name = "arcade", specifier = ">=3.3.3" },
+    { name = "pillow", specifier = "==11.3.0" },
+    { name = "pyglet", specifier = "==2.1.5" },
     { name = "pymunk", specifier = "==6.9.0" },
+    { name = "pytiled-parser", specifier = "==2.2.9" },
 ]
 
 [package.metadata.requires-dev]
