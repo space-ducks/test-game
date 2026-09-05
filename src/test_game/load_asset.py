@@ -5,6 +5,7 @@ Loads assets from a set of spritesheets.
 import xml.etree.ElementTree as ET
 
 import arcade
+
 import test_game as game
 
 
@@ -30,7 +31,7 @@ def _conv_int(val) -> int:
     """
     try:
         return int(val)
-    except (Exception):
+    except Exception:
         raise ValueError(f"{val} could not be converted to type: int.") from None
 
 
