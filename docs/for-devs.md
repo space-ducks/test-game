@@ -53,13 +53,12 @@ from contextlib import nullcontext as NoError
 # Assume sample function written previously is under game/source as sample.py
 from ..source.sample import sample_function
 
-# Parametrize function arguments and expected result
-@pytest.mark.parametrize("a, b, expected_result", [
-    (1, 2, NoError(approx(3.0))),
-    (0.001, 1, NoError(approx(0.001, abs=1e-3))),
-    ("a", 2, raises(TypeError))
-])
 
+# Parametrize function arguments and expected result
+@pytest.mark.parametrize(
+    "a, b, expected_result",
+    [(1, 2, NoError(approx(3.0))), (0.001, 1, NoError(approx(0.001, abs=1e-3))), ("a", 2, raises(TypeError))],
+)
 def test_sample_function(a, b, expected_result):
     with expected_result as e:
         assert sample_function(a, b) == e

@@ -2,81 +2,128 @@
 This module loads assets from a set of spritesheets.
 """
 
-from pathlib import Path
-from typing import Type
 import xml.etree.ElementTree as ET
+from pathlib import Path
+
 import arcade
 
 spritesheet_list: dict[str, list[Path]] = {
-    "bg_elements" : [
+    "bg_elements": [
         Path(__file__).parent / "assets/kenney_background-elements/Spritesheet/bgElements_spritesheet.png",
-        Path(__file__).parent / "assets/kenney_background-elements/Spritesheet/bgElements_spritesheet.xml"
+        Path(__file__).parent / "assets/kenney_background-elements/Spritesheet/bgElements_spritesheet.xml",
     ],
-    "hex-buildings" : [
-        Path(__file__).parent / "assets/kenney_hexagon_buildings/Spritesheet/sheet.png",
-        Path(__file__).parent / "assets/kenney_hexagon_buildings/Spritesheet/sheet.xml"
+    "hex-buildings": [
+        Path(__file__).parent / "assets/kenney_hexagon-buildings/Spritesheet/sheet.png",
+        Path(__file__).parent / "assets/kenney_hexagon-buildings/Spritesheet/sheet.xml",
     ],
-    "hex-tiles" : [
+    "hex-tiles": [
         Path(__file__).parent / "assets/kenney_hexagon-pack/Spritesheets/hexagonAll_sheet.png",
-        Path(__file__).parent / "assets/kenney_hexagon-pack/Spritesheets/hexagonAll_sheet.xml"
-        
+        Path(__file__).parent / "assets/kenney_hexagon-pack/Spritesheets/hexagonAll_sheet.xml",
     ],
-    "rpg-ui" : [
+    "rpg-ui": [
         Path(__file__).parent / "assets/kenney_ui-pack-rpg-expansion/Spritesheet/uipack_rpg_sheet.png",
-        Path(__file__).parent / "assets/kenney_ui-pack-rpg-expansion/Spritesheet/uipack_rpg_sheet.xml"
-    ]
+        Path(__file__).parent / "assets/kenney_ui-pack-rpg-expansion/Spritesheet/uipack_rpg_sheet.xml",
+    ],
 }
 
-def conv_int(val, val_type:Type=str) -> int:
-    r"""
+
+def conv_int(val) -> int:
+    """
     Converts an arbitrary value to type: int
     if it can be converted to one.
-
-    $$a+b=c$$
-
-    !!! warning
-        uh oh
 
     Parameters
     ----------
     val : Any
-        _description_
-    val_type : Type, optional
-        _description_, by default str
+        Value to be converted
 
     Returns
     -------
     int
-        _description_
+        Converted integer value.
 
     Raises
     ------
     ValueError
+        Raises if value cannot be converted to type: int.
+    """
+    try:
+        return int(val)
+    except (TypeError, ValueError):
+        raise ValueError(f"{val} could not be converted to type: int.") from None
+
+
+def load_textures(sheet_files: dict[str, list[Path]] = spritesheet_list) -> dict:
+    """
+    Loads textures from spritesheet files, returning them
+    as a dictionary organized by spritesheet name and
+    texture name.
+
+    Parameters
+    ----------
+    sheet_files : dict[str, list[Path]], optional
+        dictionary of , by default spritesheet_list
+
+    Returns
+    -------
+    dict
+        Organized textures
+    """
+
+    texture_dict = {}
+
+    for key, entry in sheet_files.items():
+        texture_dict[key] = {}
+        png_file = entry[0]
+        xml_file = entry[1]
+
+        spritesheet = arcade.load_texture(png_file)
+        textures = ET.parse(str(xml_file)).findall("SubTexture")
+
+        for texture in textures:
+            name = str(texture.get("name"))
+            x = conv_int(texture.get("x"))
+            y = conv_int(texture.get("y"))
+            w = conv_int(texture.get("width"))
+            h = conv_int(texture.get("height"))
+
+            texture_dict[key][name] = spritesheet.crop(x, y, w, h)
+
+    return texture_dict
+
+
+def lookup_texture(
+    textures: dict, pack: str, name: str, sheet_files: dict[str, list[Path]] = spritesheet_list
+) -> arcade.Texture:
+    """_summary_
+
+    Parameters
+    ----------
+    textures : dict
+        _description_
+    pack : str
+        _description_
+    name : str
+        _description_
+    sheet_files : dict[str, list[Path]], optional
+        _description_, by default spritesheet_list
+
+    Returns
+    -------
+    arcade.Texture
+        _description_
+
+    Raises
+    ------
+    LookupError
         _description_
     """
-    if isinstance(val, val_type):
-        return int(val)
-    else: raise ValueError
+    try:
+        return textures[pack][name]
+    except Exception:
+        raise LookupError(f"Texture {name} in {pack} pack could not be found.") from None
 
-def load_textures():
-    pass
 
-def lookup_texture(pack:str, name:str):
-    pass
-
-spritesheet = arcade.load_texture(spritesheet_list["bg_elements"][0])
-
-xml_file = ET.parse(str(spritesheet_list["bg_elements"][1]))
-textures = xml_file.findall("SubTexture")
-texture_lookup: dict[str, arcade.Texture] = {}
-
-for texture in textures:
-    name = str(texture.get("name"))
-    x = conv_int(texture.get("x"))
-    y = conv_int(texture.get("y"))
-    w = conv_int(texture.get("width"))
-    h = conv_int(texture.get("height"))
-
-    texture_lookup[name] = spritesheet.crop(x, y, w, h)
-
-print(texture_lookup["tree28.png"])
+if __name__ == "__main__":
+    textures = load_textures()
+    print(lookup_texture(textures, "bg_elements", "tree280.png"))
