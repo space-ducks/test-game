@@ -96,7 +96,7 @@ exclude_also = [
 ]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["src/tests"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/test_game"]

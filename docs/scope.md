@@ -1,17 +1,5 @@
 # Project Scope
 
-learning game mechanics
-1. learning how to do basic stuff
-2. basic combat window with 3 different enemy types (big/small variants for each)
-2.5 3 different character class types
-3. 2 different attack types (phys/magic)
-4. random damage windows depending on enemy type for each type of attack
-5. gain experience 
-6. consumable items pickup and stored and disappear on use
-
-
-
-
 first check to see if there is a save file and load if there is one
 
 if there is a save file ask if the player would like to continue
@@ -45,4 +33,3 @@ if level up increase character damage/hp/mp and if relevant an attack skill or m
 save dropped items consumables to the character inventory in save file
 
 return character to town list choices
-

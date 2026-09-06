@@ -13,6 +13,7 @@ nav = [
   { "Installation" = "installation.md" },
   { "Usage" = "usage.md" },
   { "API Reference" = "api.md" },
+  { "For Developers" = "for-devs.md"},
   { "Project Scope" = "scope.md"}
 ]
 
@@ -47,3 +48,4 @@ docstring_style = "numpy"
 docstring_section_style = "list"
 members_order = "source"
 show_root_heading = true
+filters = ["!^_"]
