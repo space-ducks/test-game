@@ -16,8 +16,8 @@ spritesheets: dict[str, list[Path]] = {
         Path(__file__).parent / "assets/kenney_hexagon-pack/Spritesheets/hexagonAll_sheet.xml",
     ],
     "hex_tiles": [
-        Path(__file__).parent / "assets/kenney_hexagon-pack/Spritesheets/hexagonAll_sheet.png",
-        Path(__file__).parent / "assets/kenney_hexagon-pack/Spritesheets/hexagonAll_sheet.xml",
+        Path(__file__).parent / "assets/kenney_hexagon-tiles/Spritesheet/complete.png",
+        Path(__file__).parent / "assets/kenney_hexagon-tiles/Spritesheet/complete.xml",
     ],
     "ui": [
         Path(__file__).parent / "assets/kenney_ui-pack-adventure/Spritesheet/spritesheet-default.png",
@@ -40,3 +40,9 @@ Spritesheets that can be imported and used in this project.
 |"ui"|[Kenney UI Pack - Adventure](https://kenney.nl/assets/ui-pack-adventure)|
 |"rpg_ui"|[Kenney UI Pack (RPG Expansion)](https://kenney.nl/assets/ui-pack-rpg-expansion)|
 """
+
+WINDOW_WIDTH = 1280
+"""Default window width (pixels)."""
+
+WINDOW_HEIGHT = 720
+"""Default window height (pixels)."""
