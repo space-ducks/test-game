@@ -16,8 +16,8 @@ spritesheets: dict[str, list[Path]] = {
         Path(__file__).parent / "assets/kenney_hexagon-pack/Spritesheets/hexagonAll_sheet.xml",
     ],
     "hex_tiles": [
-        Path(__file__).parent / "assets/kenney_hexagon-pack/Spritesheets/hexagonAll_sheet.png",
-        Path(__file__).parent / "assets/kenney_hexagon-pack/Spritesheets/hexagonAll_sheet.xml",
+        Path(__file__).parent / "assets/kenney_hexagon-tiles/Spritesheet/complete.png",
+        Path(__file__).parent / "assets/kenney_hexagon-tiles/Spritesheet/complete.xml",
     ],
     "ui": [
         Path(__file__).parent / "assets/kenney_ui-pack-adventure/Spritesheet/spritesheet-default.png",

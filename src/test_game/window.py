@@ -3,8 +3,7 @@ import test_game
 
 WINDOW_WIDTH = 800
 WINDOW_HEIGHT = 600
-WINDOW_TITLE = "Starting Template"
-
+WINDOW_TITLE = "Test Game"
 
 class GameView(arcade.View):
     """
@@ -17,16 +16,32 @@ class GameView(arcade.View):
 
     def __init__(self):
         super().__init__()
+        self.scene = arcade.Scene()
+        self.textures = test_game.load_textures()
 
-        self.background_color = arcade.color.AMAZON
+        self.background_color = arcade.color.ALICE_BLUE
 
-        # If you have sprite lists, you should create them here,
-        # and set them to None
+    def setup(self):
+        self.scene.add_sprite_list("background")
+        self.scene.add_sprite_list("terrain")
+        self.scene.add_sprite_list("enemies")
+        self.scene.add_sprite_list("character")
 
-    def reset(self):
-        """Reset the game to the initial state."""
-        # Do changes needed to restart the game here if you want to support that
-        pass
+        for col in range(13):
+            for row in range(9):
+                tile = arcade.Sprite()
+                if row == 0:
+                    tile.texture = test_game.lookup_texture(self.textures, "hex_pack", "dirt_01.png")
+                else:
+                    tile.texture = test_game.lookup_texture(self.textures, "hex_pack", "grass_01.png")
+                
+                if row % 2 == 0:
+                    x_offset = tile.width / 2
+                else:
+                    x_offset = 0
+                tile.center_x = col * tile.width + x_offset
+                tile.center_y = row * (tile.height * 3 / 4)
+                self.scene.add_sprite("terrain", tile)
 
     def on_draw(self):
         """
@@ -38,48 +53,10 @@ class GameView(arcade.View):
         self.clear()
 
         # Call draw() on all your sprite lists below
+        self.scene.draw()
 
     def on_update(self, delta_time):
-        """
-        All the logic to move, and the game logic goes here.
-        Normally, you'll call update() on the sprite lists that
-        need it.
-        """
         pass
-
-    def on_key_press(self, key, key_modifiers):
-        """
-        Called whenever a key on the keyboard is pressed.
-
-        For a full list of keys, see:
-        https://api.arcade.academy/en/latest/arcade.key.html
-        """
-        pass
-
-    def on_key_release(self, key, key_modifiers):
-        """
-        Called whenever the user lets off a previously pressed key.
-        """
-        pass
-
-    def on_mouse_motion(self, x, y, delta_x, delta_y):
-        """
-        Called whenever the mouse moves.
-        """
-        pass
-
-    def on_mouse_press(self, x, y, button, key_modifiers):
-        """
-        Called when the user presses a mouse button.
-        """
-        pass
-
-    def on_mouse_release(self, x, y, button, key_modifiers):
-        """
-        Called when a user releases a mouse button.
-        """
-        pass
-
 
 def main():
     """ Main function """
@@ -88,6 +65,7 @@ def main():
 
     # Create and setup the GameView
     game = GameView()
+    game.setup()
 
     # Show GameView on screen
     window.show_view(game)
