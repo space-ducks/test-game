@@ -9,10 +9,11 @@ import resvg_py
 import test_game
 from PIL import Image
 from svgpathtools import parse_path
+from pathlib import Path
 
 SVG_NS = "http://www.w3.org/2000/svg"
 
-def _path_bounds(group) -> tuple:
+def _path_bounds(group) -> tuple | None:
     """
     Determines bounding box for an svg group
     of shapes.
@@ -40,6 +41,9 @@ def _path_bounds(group) -> tuple:
 
         xmin, xmax, ymin, ymax = parsed.bbox()
         bounds.append((xmin, ymin, xmax, ymax))
+
+    if not bounds:
+        return None
 
     return (
         min(x[0] for x in bounds),
@@ -71,7 +75,10 @@ def load_textures() -> dict:
         for index, group in enumerate(groups):
 
             # Crop svg viewbox to just one sprite group
-            min_x, min_y, max_x, max_y = _path_bounds(group)
+            bounds = _path_bounds(group)
+            if bounds is None:
+                continue
+            min_x, min_y, max_x, max_y = bounds
 
             sprite_svg = ET.Element(
                 root.tag,
