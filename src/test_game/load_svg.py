@@ -147,3 +147,6 @@ def lookup_texture(textures: dict, pack: str, index: int, scale: float=1) -> arc
 
 if __name__ == "__main__":
     textures = load_textures()
+    # for img in textures["ui_platformer"]:
+    #     out_path = Path(__file__).parent / f"assets/kenney_platformer-pack-remastered/PNGs/{img:03d}.png"
+    #     png = lookup_texture(textures, "ui_platformer", img).image.save(out_path)
